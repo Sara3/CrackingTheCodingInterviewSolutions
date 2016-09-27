@@ -1,3 +1,8 @@
+/*
+3 types of edit can be performed on a string. insert, remove, or replace. 
+Write a function to check if they are one edit away
+
+*/
 #include <iostream>
 #include <string>
 using namespace std;
