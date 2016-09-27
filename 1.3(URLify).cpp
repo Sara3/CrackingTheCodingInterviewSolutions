@@ -1,3 +1,6 @@
+/*
+Replace all spaces with "%20"
+*/
 #include <iostream> 
 #include <string> 
 using namespace std; 
