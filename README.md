@@ -1,3 +1,3 @@
 # CrackingTheCodingInterviewSolutions
 
-Here I try to solve questions in the Cracking the Coding internview 
+Here are my solutions for questions in the Cracking the Coding internview 
