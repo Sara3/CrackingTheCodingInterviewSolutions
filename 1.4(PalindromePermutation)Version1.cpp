@@ -1,3 +1,9 @@
+/*
+Check if a given string is a permutation of a palindrome. A palindrome is a workd that is the same forward and backward. 
+A permuation is a rearrangment of letters 
+
+*/
+
 #include <iostream> 
 #include <string> 
 #include <map>
