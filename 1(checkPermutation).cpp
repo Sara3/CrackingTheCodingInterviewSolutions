@@ -1,3 +1,8 @@
+/*
+Check Permutation: 
+Given 2 strings, write an method to decide if one is a permutation of the other
+
+*/
 #include <iostream>
 #include <string>
 #include <algorithm>
