@@ -1,3 +1,8 @@
+/*
+A method that prepform basic string compression using the counts of repeated string
+
+
+*/
 #include <iostream>
 #include <map>
 #include <iterator>
