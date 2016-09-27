@@ -63,6 +63,8 @@ int main(){
 
 	if(oneEditAway(str1, str2)){
 		cout<<"yes!";
+	}else{
+		cout<<"not one edit away";
 	}
 
 	return 0; 
