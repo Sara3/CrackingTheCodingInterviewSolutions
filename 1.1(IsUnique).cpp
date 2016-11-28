@@ -3,51 +3,27 @@
 
 #include <iostream>
 using namespace std;
-string isunique(string str){
-	for(int i=0; i<str.size(); i++){
-		for(int j= 1; j<str.size(); j++){
-			if(str[i]==str[j]){
-				return "not unique";
-			}
-			else{
-				return "unique";
-			}
-		}
-	}
-}
 
+//bruth force
+bool isunique(string str){
+	int checker=0;
+	for(int i=0; i<str.size(); i++){
+		int val=str[i]-'a'; //rebase it
+		if((checker&(1<<val))>0){ // it means that the data exceed he 32 bit of 0 which was used as array
+			return false;
+		}
+		checker=checker|(1<<val); //add one to each unique num 
+	}
+	return true;
+}
 int main(){
 string str; 
-str="mb";
+str="abcde";
 
-str = isunique(str);
-cout<<str;
+if(isunique(str))
+	cout<<"yes";
 
 return 0;
 }
 
 
-// int main(){
-//     string str;
-// 	str="aabb";
-    
-//     int i=0;
-//     while(i<str.size()-1){
-//         if(i>-1&& i<str[i]==str[i+1]){
-//             str.erase(i,2);
-//             i--;
-//         }
-//         else{
-//             i++;
-//         }
-//     }
-    
-//    if(str.empty()){
-//        cout<<"empty";
-//    }else
-//        {
-//        cout<<str<<endl;
-//    }
-
-//    return 0;
-// }
