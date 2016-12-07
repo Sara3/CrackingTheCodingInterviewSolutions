@@ -60,10 +60,10 @@ void display(int a[N][N]){
 }
 
 int main(){
-int a[N][N]= {{1,2,3},{6,7,0},{8,9,3}};
+	int a[N][N]= {{1,2,3},{6,7,0},{8,9,3}};
 
-setzero(a);
-display(a);
+	setzero(a);
+	display(a);
 
 	return 0; 
 }
