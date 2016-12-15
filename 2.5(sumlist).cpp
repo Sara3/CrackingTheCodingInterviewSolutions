@@ -71,21 +71,29 @@ public:
 		head=head->next; 
 		return n->data;
 	}
-	
-	linkedlist add(linkedlist a, linkedlist b, int curry){
+	bool empty(){
+		if(head!=NULL){
+			return false;
+		}
+		return true;
+	}
+	linkedlist add(linkedlist a, linkedlist b){
 		linkedlist c; 
-		Node *n;
-		Node *m;
-		n=a.head;
-		m=b.head;
-		int sum=0;
-		while (n!=NULL){
-			sum=n->data + m->data+curry;
+		Node *res;
+		Node *temp;
+		Node *prev;
+		int carry =0; 
+		int sum;
+
+		while (a.head!=NULL || b.head!=NULL)
+		{
+			sum=carry;
 			c.insert(sum%10);
-			curry = sum/10; 
+			if(sum>9){
+				curry = 1;
+				} 
 			n=n->next;
 		}
-		c.insert(curry);
 		return c;
 
 	}
@@ -113,14 +121,14 @@ int main(){
 	linkedlist a; 
 	linkedlist b;
 	linkedlist res;
+	a.insert(7);
 	a.insert(1);
-	a.insert(2);
-	a.insert(3);
+	a.insert(6);
 	a.display();
 	cout<<endl;
-	b.insert(3);
-	b.insert(0);
+	b.insert(5);
 	b.insert(9);
+	b.insert(2);
 	b.display();
 	cout<<endl<<endl;
 	res=res.add(a, b, 0);
