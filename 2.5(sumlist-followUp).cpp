@@ -1,39 +1,9 @@
 #include <iostream>
 #include <math.h> 
-#include <forward_list>
+#include <stack>
+
 using namespace std; 
-/*
-forward_list<int> addlist(forward_list<int> a, forward_list<int> b){
-	forward_list<int> c; 
-	int sum =0;
-	int sum2 =0;
-	int total =0;
-	int j=0;
 
-	for(int&i:a) {
-		sum += i*pow(10,j);
-		j++;
-	}
-
-	j=0;
-	for(int&i:b) {
-		sum2 += i*pow(10,j);
-		j++;
-	}
-	total=sum2+sum;
-
-	while (total != 0) {
-		c.push_front(total%10);
-	    total /= 10;
-	}
-
-	for(int&i:c) {
-		cout<<i<<" ";
-	}
-	return c;
-}
-
-*/
 class linkedlist{
 public:
 	struct Node{
@@ -79,40 +49,68 @@ public:
 		}
 		return true;
 	}
+
+	int size(){
+		Node* s;
+		s= head;
+		int size=0;
+		while(s!=NULL){
+			s=s->next;
+			size++;
+		}
+
+		return size;
+	}
+
+	void samesize(linkedlist &a, linkedlist &b){
+		int diff =0; 
+		bool aIsBig = false;
+		if(a.size()>b.size()){
+			aIsBig = true;
+			diff = a.size()-b.size();
+		}
+		else if(a.size()<b.size()){
+			diff = b.size() - a.size();
+		}
+		for(int i=0; i<diff; i++){
+			if(aIsBig){
+				b.insert(0);
+			}else{
+				a.insert(0);
+			}
+		}
+	}
 	linkedlist add(linkedlist a, linkedlist b){
-		linkedlist c; 
-		Node *res;
-		Node *prev;
-		int carry =0; 
-		int sum;
+		stack <int> s;
+		linkedlist c;
 
-		Node *temp = a.head;
-		Node *temp2=b.head;
+		Node* temp ;
+		Node* temp2 ;
+		int sum = 0;
+		int carry = 0; 
+		temp = a.head;
+		temp2 = b.head;
+		int lastdig= 0;
 
-		while(temp!=NULL || temp2!=NULL){
-			
-			sum = (temp2? temp2->data:0)+(temp? temp->data:0)+carry;
-			carry = (sum>9)?1:0;			
-			sum = sum%10;
-			c.insert(sum);
+
+		while(temp!=NULL ){
+			sum = temp->data+temp2->data;
+			s.push(sum);
 			temp2=temp2->next;
 			temp=temp->next;
 		}
-		if(carry>0){
-			c.insert(carry);
+		
+		while(!s.empty()){
+			lastdig = (s.top()+carry);
+			carry = (lastdig>9)?1:0;
+			lastdig = lastdig%10;
+			c.insert(lastdig);
+			s.pop();
 		}
+		
 
-		// while (a.head!=NULL || b.head!=NULL)
-		// {
-		// 	sum=carry;
-		// 	c.insert(sum%10);
-		// 	if(sum>9){
-		// 		curry = 1;
-		// 		} 
-		// 	n=n->next;
-		// }
+	
 		return c;
-
 	}
 
 	/*
@@ -139,18 +137,23 @@ int main(){
 	linkedlist b;
 	linkedlist res;
 	a.insert(7);
-	a.insert(1);
 	a.insert(5);
 	a.display();
 	cout<<endl;
 	b.insert(5);
 	b.insert(9);
 	b.insert(6);
+	b.insert(2);
+	b.insert(1);
+	b.insert(3);
 	b.display();
 	cout<<endl<<endl;
-	res=res.add(a, b);
+	a.samesize(a, b);
+	res = a.add(a, b);
 	res.display();
 
+	
 
+	
 	return 0; 
 }
