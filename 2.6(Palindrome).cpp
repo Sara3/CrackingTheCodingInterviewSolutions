@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 using namespace std; 
 
 class linkedList{
@@ -11,10 +12,9 @@ public:
 	linkedList(){
 		head = NULL;
 	}
+	/*
 	//copy constractor
-	linkedList(const linkedList& a){
-		head = NULL;
-		*this = a;
+	linkedList(const linkedList& a):head(a.head){
 	}
 
 	//copy assignment Operator
@@ -34,7 +34,7 @@ public:
 		return *this;
 
 	}
-
+*/
 	void insert(int val){
 		Node* n = new Node();
 		n->data = val; 
@@ -50,7 +50,51 @@ public:
 			n=n->next;
 		}
 	}
+	/*
+	reverse a linkedlist
+	bool isPalindrom(){
+		stack<int> s;
+		Node* temp = head;
+		while(temp!=NULL){
+			s.push(temp->data);
+			temp= temp->next; 
+		}
+		//cout<<"stack: "<<endl;
+		temp = head;
 
+		while(!s.empty()&&temp!=NULL){
+			if(s.top()!=temp->data){
+				return false;
+			}
+			temp= temp->next;
+			s.pop();
+		}
+		return true;
+	}
+	*/
+	bool isPal(){
+		Node* fast = head;
+		Node* slow = head;
+		stack<int> s;
+		while(fast!=NULL && fast->next!=NULL){
+			s.push(slow->data);
+			slow=slow->next;
+			fast = fast->next->next;
+		}
+		while(!s.empty()){
+			if(s.top()!=slow->data){
+				return false;
+			}
+			slow = slow->next;
+			s.pop();
+		}
+		//if odd number skip the middle element 
+		if(fast!=NULL){
+			slow=slow->next;
+		}
+		return true;
+	}
+/*
 	~linkedList(){
 		Node* cur; 
 		Node* temp; 
@@ -62,7 +106,7 @@ public:
 		}
 		delete cur;
 	}
-
+*/
 private: 
 	Node* head; 
 
@@ -71,8 +115,23 @@ private:
 
 int main(){
 	linkedList a;
+	a.insert(1);
+	a.insert(2);
 	a.insert(3);
-
+	a.insert(4);
+	a.insert(5);
+	a.insert(6);
+	a.insert(7);
+	a.insert(8);
+	a.insert(9);
+	a.insert(10);
 	a.display();
+	cout<<endl;
+	if(a.isPal()){
+		cout<<"is Pal"<<endl;
+	}else{
+		 cout<<"Is not";
+	}
 
+	return 0;
 }
