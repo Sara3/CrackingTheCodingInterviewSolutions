@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 using namespace std; 
 
 
@@ -63,19 +64,12 @@ public:
 		}
 		return true;
 	}
-	void findSub(string t, string s){
-		for(int i=0; i<s.size(); i++){
-			for(int j=0; j<t.size(); j++){
-				if(t[j]!=s[i]){
-					cout<<i<<endl;
-					break;
-				}
-			}
-			
-		}
+	void findSub(string str2, string str1){
+		int i, j;
+		for(i=0, j=0; j<str2.size() && i<str1.size(); i++)
+			(str1[i]==str2[j]) ? j++: j=0;
+		(j==str2.size())? cout<<"found at position "<<i-j+1: cout<<"not found";
 	}
-
-
 };
 
 int main(){
