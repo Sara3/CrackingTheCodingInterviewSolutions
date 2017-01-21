@@ -3,6 +3,8 @@
 #include <list>
 #include <cstdlib>
 using namespace std; 
+
+//read up on this some times 
 /*
 #define ROW 6
 #define COL 6
@@ -77,7 +79,7 @@ private:
 vector<vector<int>>list; 
 
 };
-*/
+
 //Anjacency list node
 struct Node{
 	int dest;
@@ -135,19 +137,97 @@ public:
 
 
 };
-int main(){
-	Graph gh(5);
-    gh.addEdge(0, 1);
-    gh.addEdge(0, 4);
-    gh.addEdge(1, 2);
-    gh.addEdge(1, 3);
-    gh.addEdge(1, 4);
-    gh.addEdge(2, 3);
-    gh.addEdge(3, 4);
 
- 
-    // print the adjacency list representation of the above graph
-    gh.printGraph();
+void printG(int v,adjlist* array){
+	Node *n = new Node(); 
+	n->data =4; 
+	n->next = NULL;
+	for(auto i=0; i< v; ++i){
+		array[i].head=n;
+	} 
+	for(int i=0; i<v; i++){
+		Node *temp = array[i].head;
+		cout<<"Adjacency list for vertex: "<<i<<endl;
+		cout<<"head ";
+		while(temp!=NULL){
+			cout<<"->"<<temp->data<<endl;
+			temp=temp->next; 
+		}
+		cout<<endl;
+	}
+}
+
+*/
+
+struct Node{
+		int data; 
+		Node *next; 
+	};
+
+class Graph{
+public:
+	
+	Graph(int v){
+		V=v; 
+		Node *head=NULL;
+		array=new Node[v];
+		for(auto i=0; i< v; ++i){
+			array[i] =head; 
+		}
+	}
+
+/*
+	void printG(){
+		
+		for(int i=0; i<v; i++){
+			Node *temp = array[i];
+			cout<<"Adjacency list for vertex: "<<i<<endl;
+			cout<<"head ";
+			while(temp!=NULL){
+				cout<<"->"<<temp->data<<endl;
+				temp=temp->next; 
+			}
+			cout<<endl;
+		}
+	}
+*/
+
+
+private:
+	int V; 
+	
+	struct Node* array;
+};
+
+
+
+
+int main(){
+	//int v =4;
+	/*
+	Node *array[v];
+	Node *head = NULL; 
+
+	Node *newNode = new Node(); 
+	newNode->data = 2; //3
+	 
+	for(auto i=0; i< v; ++i){
+		array[i] =head; 
+	}
+
+	array[3] = newNode;
+
+	for(auto i=0; i< v; ++i){
+		cout<<array[i]<<endl; 
+	}
+
+	cout<<array[3]->data;
+
+*/
+
+	
+
+
 
 	return 0; 
 }
