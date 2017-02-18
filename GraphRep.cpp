@@ -201,6 +201,42 @@ private:
 
 
 
+class Graph{
+	int v; 
+	list<int> *adj;
+
+public:
+	Graph(int V){
+		v=V; 
+		adj= new list<int>[V]; 
+	}
+	void addEdg(int src, int dest){
+		adj[src].push_back(dest);
+	}
+	void BFS(int s){
+		list<int> q; 
+		bool arr[v];
+		for(int i=0; i<v; i++){
+			arr[i]=false; 
+		}
+		q.push_back(s);
+		arr[s]=true;
+		list<int>::iterator i;
+		while(!q.empty()){
+			s=q.front();
+			cout<<s<<"  ";
+			q.pop_front();
+
+			for(i=adj[s].begin(); i!=adj[s].end(); i++){
+				if(!arr[*i]){
+					arr[*i]=true;
+					q.push_back(*i);
+				}
+			}
+		}
+	}
+};
+
 
 int main(){
 	//int v =4;
